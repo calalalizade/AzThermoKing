@@ -1,0 +1,25 @@
+#footer {
+  padding: 30px 0;
+  background-color: #2e2e2e;
+  color: #fff;
+  margin-left: auto;
+
+  .footer-wrapper {
+    display: flex;
+    justify-content: center;
+
+    p {
+      color: #ababab;
+      font-size: 12px;
+
+      span {
+        color: #ababab5d;
+
+        a {
+          text-decoration: none;
+          opacity: 0.7;
+        }
+      }
+    }
+  }
+}

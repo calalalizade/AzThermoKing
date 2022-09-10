@@ -1,0 +1,70 @@
+main {
+  top: 0;
+}
+
+.hero-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  z-index: 10;
+
+  h1 {
+    font-size: clamp(35px, 5vw, 60px);
+    cursor: default;
+  }
+  p {
+    cursor: default;
+  }
+}
+
+/* ORDER BUTTON STYLE AND HOVER ANIMATION */
+.button-blue {
+  background-color: rgba(0, 158, 227, 0.78);
+  box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.15) inset;
+  padding: 15px 45px;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+
+  @media screen and (max-width: 380px) {
+    padding: 15px 30px;
+  }
+}
+.button-effect {
+  vertical-align: middle;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+  display: inline-block;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  transition-property: color;
+  transition-duration: 0.3s;
+}
+.button-effect:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition-property: transform;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
+}
+.button-effect:hover,
+.button-effect:focus,
+.button-effect:active {
+  color: $blue;
+}
+.button-effect:hover:before,
+.button-effect:focus:before,
+.button-effect:active:before {
+  transform: scaleX(1);
+}

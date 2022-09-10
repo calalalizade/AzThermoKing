@@ -1,0 +1,107 @@
+#social {
+  @include flexCenter();
+  background-image: url("../assets/banner.jpg");
+
+  p {
+    color: #fff;
+    margin: 0;
+    text-align: center;
+  }
+
+  .image-overlay {
+    background: url("../assets/slide_bg.png") repeat scroll 0 0 transparent;
+    padding: 100px 0 120px;
+    width: 100%;
+  }
+
+  .sec-title {
+    @include flexCenter();
+    margin: 0 0 50px;
+    width: 100%;
+
+    h2 {
+      color: #fff;
+      font-size: 36px;
+      font-weight: 400;
+      margin: 0 0 30px;
+      padding-bottom: 30px;
+      position: relative;
+      text-transform: uppercase;
+    }
+
+    h2::after {
+      content: "";
+      border-bottom: 1px solid #fff;
+      position: absolute;
+      width: 80%;
+      display: block;
+      margin: 0px auto;
+      bottom: 0;
+      left: 10%;
+    }
+  }
+
+  .social-buttons {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+
+    .item {
+      display: inline-block;
+      margin: 0 50px;
+
+      a {
+        border: 2px solid #fff;
+        border-radius: 50%;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 90px;
+        width: 90px;
+        transition: all 0.2s ease 0s;
+
+        i {
+          font-size: 2rem;
+        }
+
+        &:hover {
+          color: #008ecc;
+          border: 2px solid #008ecc;
+        }
+      }
+    }
+  }
+}
+
+.parallax {
+  background-attachment: fixed;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 600px) {
+  #social {
+    p {
+      padding: 15px;
+    }
+
+    .social-buttons {
+      .item {
+        margin: 0 5%;
+
+        a {
+          height: 70px;
+          width: 70px;
+
+          i {
+            font-size: 1.5rem;
+          }
+        }
+      }
+    }
+  }
+}

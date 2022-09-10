@@ -1,0 +1,187 @@
+#projects {
+  @include flexCenter();
+  padding: 70px 0px;
+
+  .sec-title {
+    @include flexCenter();
+    margin: 0 0 50px;
+    width: 100%;
+
+    p {
+      color: $lightGray;
+      margin: 0;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    h3 {
+      font-size: 20px;
+      color: #252525;
+      margin: 20px 0 10px;
+      font-weight: 400;
+    }
+
+    h2 {
+      font-size: 36px;
+      font-weight: 400;
+      margin: 0 0 30px;
+      padding-bottom: 30px;
+      position: relative;
+      text-transform: uppercase;
+    }
+
+    h2::after {
+      content: "";
+      border-bottom: 1px solid $blue;
+      position: absolute;
+      width: 80%;
+      display: block;
+      margin: 0px auto;
+      bottom: 0;
+      left: 10%;
+    }
+  }
+}
+
+.projects-wrapper {
+  width: 100%;
+  max-width: 1200px;
+
+  ul {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    display: inline-block;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .project-item {
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    width: 32%;
+    margin: 0 1% 1% 0;
+    border-radius: 10px;
+
+    .mask {
+      position: absolute;
+      width: 100%;
+      max-height: 50%;
+      background-color: rgba(54, 55, 50, 0.79);
+      color: #fff;
+      padding: 15px;
+      bottom: -135px;
+      transition: all 0.4s ease;
+
+      h3 {
+        font-size: 22px;
+      }
+
+      p {
+        font-size: 14px;
+        font-weight: 300;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+    }
+
+    .external {
+      list-style: outside none none;
+      position: absolute;
+      margin: 0;
+      padding: 0;
+      top: -47px;
+      right: 0;
+      transition: all 0.4s ease;
+
+      li a {
+        background-color: rgba(255, 255, 255, 0.9);
+        color: $lightGray;
+        display: block;
+        padding: 10px 18px 13px;
+        transition: all 0.5s ease 0s;
+        margin-left: 5px;
+
+        i {
+          font-size: 1rem;
+        }
+
+        &:hover {
+          background-color: $blue;
+          color: #fff;
+        }
+
+        &:hover .external {
+          top: 0;
+        }
+      }
+    }
+
+    &:hover .mask {
+      bottom: 0;
+    }
+
+    &:hover .external {
+      top: 0;
+    }
+  }
+}
+
+/* MEDIA QUERIES */
+@media (min-width: 746px) and (max-width: 1056px) {
+  .projects-wrapper .project-item {
+    width: 46%;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .projects-wrapper {
+    .project-item {
+      width: 48%;
+
+      .mask {
+        padding: 10px;
+        bottom: -148px;
+
+        h3 {
+          font-size: 20px;
+        }
+
+        p {
+          font-size: 12px;
+          font-weight: 300;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .projects-wrapper {
+    .project-item {
+      width: 80%;
+
+      .mask {
+        padding: 2px;
+        bottom: -148px;
+
+        h3 {
+          font-size: 18px;
+        }
+
+        p {
+          font-size: 10px;
+        }
+      }
+    }
+  }
+}
