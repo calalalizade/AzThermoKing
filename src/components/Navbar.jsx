@@ -1,6 +1,5 @@
-import React from "react";
+import { React, useState } from "react";
 import { Link, animateScroll as scroll } from "react-scroll";
-import { useEffect, useState } from "react";
 import LogoOnly from "../assets/AzthermokingOnlyLogo.png";
 import LogoText from "../assets/AzthermokingText.png";
 

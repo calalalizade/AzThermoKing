@@ -1,20 +1,57 @@
-import React from "react";
+import { React, useState } from "react";
 import { TextField, Button, Snackbar, Alert, Slide } from "@mui/material";
 import { Reveal } from "react-awesome-reveal";
 import scrollAnimation from "./scrollAnimation/scrollAnimation";
+import axios from "axios";
 
 function TransitionLeft(props) {
   return <Slide {...props} direction="left" />;
 }
 
 function ContactUs() {
-  const [open, setOpen] = React.useState(false);
-  const [transition, setTransition] = React.useState(undefined);
+  const [open, setOpen] = useState(false);
+  const [transition, setTransition] = useState(undefined);
+  const [sendText, setSendText] = useState("Send");
 
-  const handleClick = (Transition) => (e) => {
+  const [values, setValues] = useState({
+    name: "",
+    company: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setValues({ ...values, [name]: value });
+  };
+
+  const handleClick = (Transition) => async (e) => {
     e.preventDefault();
-    setTransition(() => Transition);
-    setOpen(true);
+    setSendText("Sending...");
+
+    await axios
+      .post("http://localhost:5000/mail", values, {
+        headers: {
+          "Content-type": "application/json",
+        },
+      })
+      .then((res) => {
+        setTransition(() => Transition);
+        setOpen(true);
+        setValues({
+          name: "",
+          company: "",
+          email: "",
+          phone: "",
+          message: "",
+        });
+        setSendText("Send");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleClose = () => {
@@ -37,40 +74,56 @@ function ContactUs() {
           <div className="contact-container">
             <form
               onSubmit={handleClick(TransitionLeft)}
+              method="post"
               className="contact-form"
             >
               <TextField
+                name="name"
                 id="standard-basic"
                 label="Your Name"
                 variant="standard"
+                value={values.name}
+                onChange={handleChange}
                 required
               />
               <TextField
+                name="company"
                 id="standard-basic"
                 variant="standard"
                 label="Company Name"
+                value={values.company}
+                onChange={handleChange}
                 required
               />
               <TextField
+                name="email"
                 type="email"
                 id="standard-basic"
                 variant="standard"
                 label="Email"
+                value={values.email}
+                onChange={handleChange}
                 required
               />
               <TextField
+                name="phone"
                 type="number"
                 id="standard-basic"
                 variant="standard"
                 label="Number"
+                value={values.phone}
+                onChange={handleChange}
                 required
               />
               <TextField
+                name="message"
                 id="standard-multiline-flexible"
                 label="Your Message"
                 variant="standard"
                 multiline
                 rows={4}
+                value={values.message}
+                onChange={handleChange}
                 required
               />
               <Button
@@ -83,7 +136,7 @@ function ContactUs() {
                 variant="contained"
                 startIcon={<i className="bi bi-send"></i>}
               >
-                Send
+                {sendText}
               </Button>
             </form>
 
@@ -115,6 +168,7 @@ function ContactUs() {
         open={open}
         onClose={handleClose}
         TransitionComponent={transition}
+        autoHideDuration={3000}
         key={transition ? transition.name : ""}
       >
         <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
